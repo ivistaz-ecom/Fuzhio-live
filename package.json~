@@ -1,0 +1,41 @@
+{
+    "name": "fuzhio-1",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint"
+    },
+    "dependencies": {
+        "@types/node": "18.11.18",
+        "@types/react": "18.0.26",
+        "@types/react-dom": "18.0.10",
+        "axios": "^1.6.2",
+        "bootstrap": "^4.6.2",
+        "bootstrap-icons": "^1.11.2",
+        "eslint": "8.31.0",
+        "eslint-config-next": "13.1.1",
+        "moment": "^2.29.4",
+        "next": "^13.1.1",
+        "next-seo": "^6.4.0",
+        "node-modules": "^1.0.1",
+        "react": "18.2.0",
+        "react-bootstrap": "^2.9.1",
+        "react-countup": "^6.4.2",
+        "react-dom": "18.2.0",
+        "react-loader-spinner": "^5.4.5",
+        "react-moment": "^1.1.2",
+        "react-multi-carousel": "^2.8.4",
+        "react-native-gravityform": "^1.0.15",
+        "react-owl-carousel": "^2.3.3",
+        "react-router-dom": "^6.14.2",
+        "react-scripts": "^2.1.3",
+        "react-share": "^4.4.1",
+        "slugify": "^1.6.6",
+        "styled-components": "^6.1.0",
+        "svgo": "^3.0.2",
+        "typescript": "4.9.4"
+    }
+}
