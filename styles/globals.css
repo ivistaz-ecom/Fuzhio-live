@@ -97,10 +97,12 @@ color: #b34738;
 /* Home Page */
 
 .home-background-container {
-  background-image: url('/home/home_banner.jpg'), linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
-  width: 100%;
+  background-image: url('/home/home_banner.jpg'),linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.2));
+  /* background-blend-mode: overlay; */
+  width:100%;
   min-height: 100vh;
   background-repeat: no-repeat;
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
 }
@@ -212,10 +214,16 @@ hr {
   background-size: cover;
 }
 
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .agri-background-container {
+    background-attachment: scroll;
+  }
+}
+
 
 /* Agri */
 
-.agri-background-container { 
+.about-background-container { 
   background-image: url('/assets/agri/agriculture_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
   /* background-blend-mode: overlay; */
   width:100%;
@@ -248,6 +256,12 @@ hr {
   background-size: cover;
 }
 
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .noble-background-container {
+    background-attachment: scroll;
+  }
+}
+
 /* Fuzhio Covid */
 .fuzhiocovid-background-container { 
   background-image: url('/assets/fuzhiocovid/fuzhiocovid_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
@@ -259,6 +273,11 @@ hr {
   background-position: center;
   background-size: cover;
 }  
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .fuzhiocovid-background-container {
+    background-attachment: scroll;
+  }
+}
 
 .community-background-container { 
   background-image: url('/assets/community-engagement/community_banner.png');
@@ -270,7 +289,11 @@ hr {
   background-position: center;
   background-size: cover;
 }
-
+@media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .community-background-container {
+    background-attachment: scroll;
+  }
+}
 
 a.custom-header-style {
   color: #ffd0b3;
