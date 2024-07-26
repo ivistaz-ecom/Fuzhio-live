@@ -32,16 +32,15 @@ function Header() {
             <Container fluid className='position-absolute py-0 d-lg-block d-none'>
                 {/* Desktop Menu Bar */}
                 <Container className="p-0 py-3">
-                    <Row>
+                    <Row >
                         {/* Logo with Link */}
-                        <Col>
+                        <Col lg={5}>
                             <Col>
                                 <Link class="navbar-brand" href="/">
                                     <Image src="/fuzhio_logo.png" width={130} />
                                 </Link>
                             </Col>
                         </Col>
-
                         {/* Menu with Link */}
                         <Col className='d-flex flex-column justify-content-center'>
                             <Row className="d-flex flex-row flex-wrap gap-3">
@@ -96,7 +95,7 @@ function Header() {
                                 </Col>
 
                                 {/* Blog Link */}
-                                <Col className="text-center">
+                                <Col className="text-center" lg={1}>
                                     <Link href="/blog" className={`custom-header-style ${isActive('/blog') ? 'active-link' : ''}`}>
                                         Blog
                                     </Link>

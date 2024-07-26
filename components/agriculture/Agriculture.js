@@ -14,7 +14,7 @@ const Agriculture = () => {
                     <Row className='p-lg-5 p' style={{ color: '#3C3C3CDE', fontSize: '17px', lineHeight: '32px' }}>
                         <p>At Fuzhio, our focus is on creating sustainable opportunities for farmers to improve their market realizations. We lead efforts that improve supply chains and their accompanying infrastructure, and in turn, generate opportunities for smallholders to link their production to sales. Right from improvements in technology, promotion of gender equality, and implementing sustainable farming practices, we help producers reap benefits by creating a plethora of market opportunities.
                         </p>
-                        <p>Things we do:</p>
+                        <p className='w-100'>Things we do:</p>
                         <ul className='px-5'>
                             <li>We create forward and backward linkages for farmers through producer companies and help them prosper financially.</li>
                             <li>We create an intangible benefit for farmers through price benchmarking and assured buying.</li>
