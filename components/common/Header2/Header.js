@@ -29,12 +29,12 @@ function Header() {
     return (
         <>
 
-            <Container fluid className=' py-0 d-lg-block d-none'>
+            <Container fluid className='position-absolute py-0 d-lg-block d-none'>
                 {/* Desktop Menu Bar */}
                 <Container className="p-0 py-3">
                     <Row>
                         {/* Logo with Link */}
-                        <Col>
+                        <Col lg={5}>
                             <Col>
                                 <Link class="navbar-brand" href="/">
                                     <Image src="/fuzhio_logo.png" width={130} />
@@ -47,40 +47,40 @@ function Header() {
                             <Row className="d-flex flex-row flex-wrap gap-3">
                                 {/* Home Link */}
                                 <Col className="text-center">
-                                    <Link href="/" className={`custom-header-style ${isActive('/') ? 'active-link' : ''}`}>
+                                    <Link href="/" className={`blog-custom-header-style ${isActive('/') ? 'active-link' : ''}`}>
                                         Home
                                     </Link>
                                 </Col>
 
                                 {/* About Link */}
                                 <Col className="text-center">
-                                    <Link href="/about" className={`custom-header-style ${isActive('/about') ? 'active-link' : ''}`}>
+                                    <Link href="/about" className={`blog-custom-header-style ${isActive('/about') ? 'active-link' : ''}`}>
                                         About
                                     </Link>
                                 </Col>
 
                                 {/* Our Work Link */}
-                                <Col className="text-center position-relative p-0" md={2}>
+                                <Col className="text-center position-relative p-0" md={3}>
                                     <Col className="p-0 hover-ourwork p-0">
-                                        <Link href="" className={`custom-header-style our-work-af ${isActive('/our-work') ? 'active-link' : ''}`}>
+                                        <Link href="" className={`blog-custom-header-style our-work-af ${isActive('/our-work') ? 'active-link' : ''}`}>
                                             Our Work
                                         </Link>
                                     </Col>
 
                                     <div className='p-0 our-work-element pt-3'>
                                         <Col className='p-0 ' style={{ width: '180px', left: '11px', display: 'flex', flexDirection: 'column', zIndex: '100' }}>
-                                            <Col className='p-0 text-left pt-1'>
-                                                <Link href="/agriculture" className='custom-header-style p-0 border border-0'>
+                                            <Col className='p-0 text-left py-1'>
+                                                <Link href="/agriculture" className='blog-custom-header-style p-0 border border-0'>
                                                     Agriculture
                                                 </Link>
                                             </Col>
                                             {/* <Col className='p-0 text-left py-3'>
-                                                <Link href="/noble-plastic" className='custom-header-style border border-0'>
+                                                <Link href="/noble-plastic" className='blog-custom-header-style border border-0'>
                                                     Noble Plastic
                                                 </Link>
                                             </Col> */}
-                                            <Col className='p-0 text-left'>
-                                                <Link href="/community-engagement" className='custom-header-style border border-0'>
+                                            <Col className='p-0 text-left py-1'>
+                                                <Link href="/community-engagement" className='blog-custom-header-style border border-0'>
                                                     Community Engagement
                                                 </Link>
                                             </Col>
@@ -90,14 +90,14 @@ function Header() {
 
                                 {/* Fuzhio & Covid Response Link */}
                                 <Col md={4}>
-                                    <Link href="/fuzhio-covid-response" className={`custom-header-style ${isActive('/fuzhio-covid-response') ? 'active-link' : ''}`}>
+                                    <Link href="/fuzhio-covid-response" className={`blog-custom-header-style ${isActive('/fuzhio-covid-response') ? 'active-link' : ''}`}>
                                         Fuzhio & Covid Response
                                     </Link>
                                 </Col>
 
                                 {/* Blog Link */}
-                                <Col className="text-center">
-                                    <Link href="/blog" className={`custom-header-style ${isActive('/blog') ? 'active-link' : ''}`}>
+                                <Col md={1} className="text-center">
+                                    <Link href="/blog" className={`blog-custom-header-style ${isActive('/blog') ? 'active-link' : ''}`}>
                                         Blog
                                     </Link>
                                 </Col>

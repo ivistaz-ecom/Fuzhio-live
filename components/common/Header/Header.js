@@ -34,9 +34,9 @@ function Header() {
                 <Container className="p-0 py-3">
                     <Row >
                         {/* Logo with Link */}
-                        <Col lg={5}>
+                        <Col lg={5} className=''>
                             <Col>
-                                <Link class="navbar-brand" href="/">
+                                <Link className="navbar-brand" href="/">
                                     <Image src="/fuzhio_logo.png" width={130} />
                                 </Link>
                             </Col>
@@ -59,8 +59,8 @@ function Header() {
                                 </Col>
 
                                 {/* Our Work Link */}
-                                <Col className="text-center position-relative p-0" md={2}>
-                                    <Col className="p-0 hover-ourwork p-0">
+                                <Col className="text-center position-relative p-0" md={3}>
+                                    <Col className="p-0 hover-ourwork ">
                                         <Link href="" className={`custom-header-style our-work-af ${isActive('/our-work') ? 'active-link' : ''}`}>
                                             Our Work
                                         </Link>
@@ -68,8 +68,8 @@ function Header() {
 
                                     <div className='p-0 our-work-element pt-3'>
                                         <Col className='p-0 ' style={{ width: '180px', left: '11px', display: 'flex', flexDirection: 'column', zIndex: '100' }}>
-                                            <Col className='p-0 text-left pt-1'>
-                                                <Link href="/agriculture" className='custom-header-style p-0 border border-0'>
+                                            <Col className='p-0 text-left py-1'>
+                                                <Link href="/agriculture" className='custom-header-style ps-5 border border-0'>
                                                     Agriculture
                                                 </Link>
                                             </Col>
@@ -78,7 +78,7 @@ function Header() {
                                                     Noble Plastic
                                                 </Link>
                                             </Col> */}
-                                            <Col className='p-0 text-left'>
+                                            <Col className='p-0 text-left py-1'>
                                                 <Link href="/community-engagement" className='custom-header-style border border-0'>
                                                     Community Engagement
                                                 </Link>

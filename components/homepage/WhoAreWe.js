@@ -44,7 +44,7 @@ const WhoAreWe = () => {
                 <div>
                   <a
                     href="/about/"
-                    className="mt-md-5 text-decoration-none text-white"
+                    className="mt-md-5 text-decoration-none read-more"
                   >
                     READ MORE
                   </a>

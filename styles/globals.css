@@ -168,6 +168,17 @@ button.react-multiple-carousel__arrow.react-multiple-carousel__arrow--left {
   }
 }
 /* Home page Media css end  */
+.read-more{
+  color: white;
+}
+.read-more:hover{
+  color: #9E645C;
+ background-color: white;
+ padding:10px;
+ transition: 0.1s;
+ font-weight: 600;
+}
+
 /* Home page css end */
 
 
@@ -309,10 +320,7 @@ hr {
   }
 }
 
-a.custom-header-style {
-  color: #ffd0b3;
-  text-decoration: none;
-}
+
 
 
 /* icon 1 */
@@ -535,7 +543,24 @@ a.custom-header-style {
   border-left: 0.3em solid transparent;
 }
 
+a.custom-header-style {
+  color: #ffd0b3;
+  text-decoration: none;
+}
+
 .custom-header-style:hover {
+  color: #c8594a;
+  padding-bottom: 10px !important;
+  border-bottom: 2px solid #c8594a;
+  
+}
+
+a.blog-custom-header-style {
+  color: #000000;
+  text-decoration: none;
+}
+
+.blog-custom-header-style:hover {
   color: #c8594a;
   padding-bottom: 10px !important;
   border-bottom: 2px solid #c8594a;
@@ -544,6 +569,13 @@ a.custom-header-style {
 
 /* Add this to your Home.module.css */
 .custom-header-style.active-link{
+  color: #c8594a;
+  font-weight: bold;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #c8594a; /* Your desired active color */
+}
+
+.blog-custom-header-style.active-link{
   color: #c8594a;
   font-weight: bold;
   padding-bottom: 10px;
