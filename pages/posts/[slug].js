@@ -21,18 +21,10 @@ const Post = () => {
 
     return (
         <>
-        <style>
-            {
-                `@media(max-width:767px) {
-                marginTop: '70px';
-                }
-                
-                `
-            }
-        </style>
+        
             <Header />
             <Container fluid style={{ background: '#F5F5F5' }} className='p-lg-5 p-3'>
-                <Container className='bg-white p-lg-5 p-3'>
+                <Container className='bg-white p-lg-5 p-3'style={{ marginTop: '70px' }}>
                     <Row className='p-lg-5 p-3 bg-white'>
                         <Image src={post.image} width="100%" />
                         <h2 className='py-4 '>{post.title}</h2>
