@@ -196,7 +196,7 @@ hr {
 }
 
 /* about*/
-.about-background-container {
+.about-background-container { 
   background-image: url('/assets/about/about_us_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
   /* background-blend-mode: overlay; */
   width:100%;
@@ -210,8 +210,8 @@ hr {
 
 /* Agri */
 
-.agri-background-container {
-  background-image: url('/assets/agri/agriculture_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
+.agri-background-container { 
+  background-image: url('/assets/agri/agriculture_banner.jpg');
   /* background-blend-mode: overlay; */
   width:100%;
   min-height: 70vh;
@@ -220,15 +220,15 @@ hr {
   background-position: center;
   background-size: cover;
 }
-.agri-hover-effect:hover {
+.agri-hover-effect:hover { 
   transform: scale(1.1);
 }
 
 /* Noble Plastic Page*/
 
-.noble-background-container {
+.noble-background-container { 
   background-image: url('/assets/nobleplastic/noble_plastic_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
-  /* background-blend-mode: overlay; */
+  /* background-blend-mode: overlay; */ 
   width:100%;
   min-height: 70vh;
   background-repeat: no-repeat;
@@ -238,7 +238,7 @@ hr {
 }
 
 /* Fuzhio Covid */
-.fuzhiocovid-background-container {
+.fuzhiocovid-background-container { 
   background-image: url('/assets/fuzhiocovid/fuzhiocovid_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
   /* background-blend-mode: overlay; */
   width:100%;
@@ -249,7 +249,7 @@ hr {
   background-size: cover;
 }  
 
-.community-background-container {
+.community-background-container { 
   background-image: url('/assets/community-engagement/community_banner.png');
   /* background-blend-mode: overlay; */
   width:100%;
