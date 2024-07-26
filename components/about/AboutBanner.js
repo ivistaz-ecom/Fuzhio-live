@@ -4,7 +4,7 @@ import { Col, Container, Image, Row } from 'react-bootstrap'
 const AboutBanner = () => {
     return (
         <>
-            <Container fluid className='about-background-container d-flex flex-wrap align-items-center '>
+            <Container fluid className='about-background-container about-background-container1 d-flex flex-wrap align-items-center '>
                 <Container className=''>
                     <Row>
                         <Col >

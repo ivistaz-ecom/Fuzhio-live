@@ -204,19 +204,33 @@ hr {
 
 /* about*/
 .about-background-container { 
-  background-image: url('/assets/about/about_us_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
-  /* background-blend-mode: overlay; */
-  width:100%;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2)), url('/assets/about/about_us_banner.jpg');
+  width: 100%;
   min-height: 70vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  -webkit-background-size: cover; /* Safari and Chrome */
+  -moz-background-size: cover; /* Firefox */
+  -o-background-size: cover; /* Opera */
 }
 
 @media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  .agri-background-container {
+  .about-background-container {
+    display: none;
+  }
+  .about-background-container1 {
+    background-image: url('/assets/about/about_us_banner.jpg');
+    width: 100%;
+    min-height: 70vh;
+    background-repeat: no-repeat;
     background-attachment: scroll;
+    background-position: center;
+    background-size: cover;
+    -webkit-background-size: cover; /* Safari and Chrome */
+    -moz-background-size: cover; /* Firefox */
+    -o-background-size: cover; /* Opera */
   }
 }
 
