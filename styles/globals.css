@@ -223,7 +223,7 @@ hr {
 
 /* Agri */
 
-.about-background-container { 
+.agri-background-container {
   background-image: url('/assets/agri/agriculture_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
   /* background-blend-mode: overlay; */
   width:100%;
@@ -233,12 +233,12 @@ hr {
   background-position: center;
   background-size: cover;
 }
-.agri-hover-effect:hover { 
+.agri-hover-effect:hover {
   transform: scale(1.1);
 }
 
 @media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  .agri-background-container {
+  .agri-background-container  {
     background-attachment: scroll;
   }
 }
