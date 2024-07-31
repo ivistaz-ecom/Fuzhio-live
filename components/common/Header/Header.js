@@ -175,7 +175,7 @@ function Header() {
                                                     </Link>
                                                 </Col> */}
                                                 <Col className=" p-3 px-4 p-0 border-bottom">
-                                                    <Link href="/community-engagement" className='text-decoration-none text-dark'>
+                                                    <Link href="https://community-engagement.fuzhio.org/" target='_blank' className='text-decoration-none text-dark'>
                                                         &gt;  Community Engagement
                                                     </Link>
                                                 </Col>
