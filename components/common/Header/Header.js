@@ -97,7 +97,7 @@ function Header() {
                                 {/* Blog Link */}
                                 <Col className="text-center" lg={1}>
                                     <Link href="/blog" className={`custom-header-style ${isActive('/blog') ? 'active-link' : ''}`}>
-                                        Blog
+                                        Blogss
                                     </Link>
                                 </Col>
                             </Row>
