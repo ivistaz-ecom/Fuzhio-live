@@ -1,6 +1,8 @@
 {
-    
+    "wpApiUrl" : "https://docs.fuzhio.org/wp-json/wp/v2",
+    "apiDomainUrl" : "https://docs.fuzhio.org/",
     "mainWebUrl": "https://fuzhio.org",
+    
     "SERVER_URL": "https://elementor.ivistasolutions.biz/wp-json/wp/v2/",
     "SERVER_FROM": "https://elementor.ivistasolutions.biz/wp-json/",
     "SERVER_LIVE": "https://elementor.ivistasolutions.biz/"

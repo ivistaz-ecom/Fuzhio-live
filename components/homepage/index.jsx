@@ -1,51 +1,29 @@
-'use client'
-import React from 'react'
-
-import HomeBanner from './HomeBanner'
-import { NextSeo } from 'next-seo'
-
+"use client";
+import React from "react";
+import HomeBanner from "./HomeBanner";
+import SeoComponents from "../SeoComponents/Seo";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const index = () => {
+  const pathname = usePathname();
+  const [domainName, setDomainName] = useState("");
+  const title = "Fuzhio Health and Business Services";
+  const description =
+    "Fuzhio is an eco social venture that aims to enhance value chain efficiencies of products that resolve socio economic and environmental issues";
+  const path = `${pathname}`;
+  const metaImage = "";
   return (
     <>
-      <NextSeo
-        title="Fuzhio Health and Business Services"
-        description="Fuzhio is an eco social venture that aims to enhance value chain efficiencies of products that resolve socio economic and environmental issues"
-        canonical="https://fuzhio.org/"
-        openGraph={{
-          url: 'https://fuzhio.org/',
-          title: 'Fuzhio Health and Business Services',
-          description: 'Fuzhio is an eco social venture that aims to enhance value chain efficiencies of products that resolve socio economic and environmental issues',
-          images: [
-            {
-              url: '/fuzhio_logo.png',
-              width: 800,
-              height: 600,
-              alt: 'Awards and Recognitions',
-              type: 'image/jpeg',
-            },
-            {
-              url: '/fuzhio_logo.png',
-              width: 900,
-              height: 800,
-              alt: 'Awards and Recognitions',
-              type: 'image/jpeg',
-            },
-            { url: '/fuzhio_logo.png' },
-            { url: '/fuzhio_logo.png' },
-          ],
-          siteName: 'SiteName',
-        }}
-        twitter={{
-          handle: '@handle',
-          site: '@site',
-          cardType: 'summary_large_image',
-        }}
+      <SeoComponents
+        title={title}
+        description={description}
+        path={path}
+        metaImage={metaImage}
       />
-
       <HomeBanner />
     </>
-  )
-}
+  );
+};
 
-export default index
+export default index;

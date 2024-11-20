@@ -587,7 +587,6 @@ a:hover {
   text-decoration: none !important;
 }
 
-
 .our-work-af-mob::after {
   display: inline-block;
   margin-left: 0.255em;
@@ -602,9 +601,14 @@ a:hover {
   transform: translate(10px, 10px);
 }
 
-
 .custom-blog-design {
   margin-top: 100px;
+}
+.wp-para{
+  padding-bottom: 10px;
+}
+.wp-hyperlink{
+color: #884138;
 }
 
 @media(max-width:767px) {
