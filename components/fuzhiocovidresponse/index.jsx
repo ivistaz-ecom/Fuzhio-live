@@ -15,9 +15,9 @@ function index() {
       <NextSeo
         title="Helping vulnerable strengthen their pandemic response"
         description="Our work during the time of the pandemic and in the form of Covid Action Collab, spanned geographies and helped support vulnerable communities"
-        canonical="https://www.canonical.ie/"
+        canonical="https://fuzhio.org/fuzhio-covid-response"
         openGraph={{
-          url: 'https://www.url.ie/a',
+          url: 'https://fuzhio.org/fuzhio-covid-response',
           title: 'Helping vulnerable strengthen their pandemic response',
           description: 'Our work during the time of the pandemic and in the form of Covid Action Collab, spanned geographies and helped support vulnerable communities',
           images: [

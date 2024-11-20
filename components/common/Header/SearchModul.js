@@ -15,6 +15,13 @@ function SearchModal() {
   // Check if we are on the /blog page
   const isOnBlogPage = router.pathname === "/blog";
 
+  // List of pages to include in search
+  const pages = [
+    { title: "Blog", path: "/blog" },
+    { title: "About Us", path: "/about" },
+    { title: "Contact", path: "/contact" },
+  ];
+
   useEffect(() => {
     const filterResults = () => {
       if (!searchQuery) {
@@ -23,11 +30,18 @@ function SearchModal() {
         return;
       }
 
-      const results = posts.filter((post) =>
+      // Filter posts
+      const postResults = posts.filter((post) =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
-      setFilteredResults(results);
-      setResultCount(results.length);
+
+      // Filter pages
+      const pageResults = pages.filter((page) =>
+        page.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+
+      setFilteredResults([...postResults, ...pageResults]); // Combine post and page results
+      setResultCount(postResults.length + pageResults.length);
     };
 
     const debounceTimer = setTimeout(() => {
@@ -37,10 +51,15 @@ function SearchModal() {
     return () => clearTimeout(debounceTimer); // Cleanup timer
   }, [searchQuery]);
 
+  const handleResultClick = (path) => {
+    setOpenModal(false); // Close modal
+    router.push(path); // Navigate to the selected path
+  };
+
   return (
     <div>
       {/* Search Button */}
-      <Link href="" className="" onClick={() => setOpenModal(true)}>
+      <Link href="" onClick={() => setOpenModal(true)}>
         <FaSearch style={{ color: isOnBlogPage ? "black" : "#ffd0b3" }} /> {/* Conditionally set icon color */}
       </Link>
 
@@ -67,13 +86,11 @@ function SearchModal() {
                 />
                 <Link
                   href=""
-                  type="button"
                   className="btn-close"
                   aria-label="Close"
                   onClick={() => setOpenModal(false)}
                 >
-                  <FaTimesCircle style={{ color: "black" }} />{" "}
-                  {/* Set close icon color to black */}
+                  <FaTimesCircle style={{ color: "black" }} /> {/* Set close icon color to black */}
                 </Link>
               </div>
 
@@ -86,26 +103,24 @@ function SearchModal() {
                 )}
                 {filteredResults.length > 0 ? (
                   <ul className="list-group">
-                    {filteredResults.map((post, index) => {
-                      // Create a slug, replace spaces with hyphens, retain colons
-                      const slug = post.title
-                        .toLowerCase()
-                        .replace(/\s+/g, "-"); // Replace spaces with hyphens
-
-                      // Build the URL with "post/" prefix
-                      const dynamicUrl = `/posts/${slug}`; 
+                    {filteredResults.map((item, index) => {
+                      // Determine if item is a post or a page
+                      const isPage = pages.some((page) => page.title === item.title);
+                      const path = isPage
+                        ? item.path // Use page path for pages
+                        : `/posts/${item.title.toLowerCase().replace(/\s+/g, "-")}`; // Generate slug for posts
 
                       return (
                         <li
                           key={index}
                           className="list-group-item d-flex justify-content-between align-items-center"
                         >
-                          <Link
-                            href={dynamicUrl}
-                            onClick={() => setOpenModal(false)}
+                          <span
+                            onClick={() => handleResultClick(path)}
+                            style={{ cursor: "pointer" }}
                           >
-                            <span>{post.title}</span>
-                          </Link>
+                            {item.title}
+                          </span>
                         </li>
                       );
                     })}

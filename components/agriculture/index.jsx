@@ -15,9 +15,9 @@ const index = () => {
       <NextSeo
         title="Ensures food & income security for smallholder farmers"
         description="Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology"
-        canonical="https://www.canonical.ie/"
+        canonical="https://fuzhio.org/agriculture"
         openGraph={{
-          url: 'https://www.url.ie/a',
+          url: 'https://fuzhio.org/agriculture',
           title: 'Ensures food & income security for smallholder farmers',
           description: 'Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology',
           images: [

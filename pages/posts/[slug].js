@@ -5,7 +5,7 @@ import slugify from 'slugify';
 
 import { Container, Image, Row } from 'react-bootstrap';
 
-import Header from '../../components/common/Header2'
+import Header from '../../components/common/Header'
 import Footer from '../../components/common/Footer'
 
 

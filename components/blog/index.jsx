@@ -14,9 +14,9 @@ const index = () => {
       <NextSeo
         title="We aim to improve value chains & business growth plan for farmers"
         description="Browse through our blog section to understand how we constantly strive to improve value chains and ensure a business growth plan for farmers that enhances profitability"
-        canonical="https://www.canonical.ie/"
+        canonical="https://fuzhio.org/blog/"
         openGraph={{
-          url: 'https://www.url.ie/a',
+          url: 'https://fuzhio.org/blog',
           title: 'We aim to improve value chains & business growth plan for farmers',
           description: 'Browse through our blog section to understand how we constantly strive to improve value chains and ensure a business growth plan for farmers that enhances profitability',
           images: [

@@ -1,5 +1,5 @@
 import React from 'react'
-import Header from '../components/common/Header2'
+import Header from '../components/common/Header'
 import Footer from '../components/common/Footer'
 import { Container } from 'react-bootstrap'
 

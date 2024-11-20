@@ -1,16 +1,18 @@
-import '../styles/globals.css'
+import '../styles/globals.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Script from 'next/script';
 
-
-
 function MyApp({ Component, pageProps }) {
   return (
-   <>
-     <Script strategy="afterInteractive" id="google-code"
-        src={`https://www.googletagmanager.com/gtag/js?id='G-HGLVN18PC5'`}></Script>
-     
-     <Script strategy="afterInteractive" id="google-analytics">
+    <>
+      {/* Google Analytics and GTM Scripts */}
+      <Script
+        strategy="afterInteractive"
+        id="google-code"
+        src="https://www.googletagmanager.com/gtag/js?id=G-HGLVN18PC5"
+      ></Script>
+
+      <Script strategy="afterInteractive" id="google-analytics">
         {`
           window.dataLayer = window.dataLayer || [];
           function gtag() {
@@ -18,10 +20,11 @@ function MyApp({ Component, pageProps }) {
           }
           gtag('js', new Date());
           gtag('config', 'G-HGLVN18PC5');
-        `}</Script>
-   
-     <Script id="google-tag-manager-start">
-     {`
+        `}
+      </Script>
+
+      <Script id="google-tag-manager-start">
+        {`
           (function(w,d,s,l,i){
             w[l]=w[l]||[];
             w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
@@ -31,9 +34,9 @@ function MyApp({ Component, pageProps }) {
             f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM-M67QDM5');
         `}
-     </Script>
+      </Script>
 
-     <noscript>
+      <noscript>
         <iframe
           src="https://www.googletagmanager.com/ns.html?id=GTM-M67QDM5"
           height="0"
@@ -42,9 +45,26 @@ function MyApp({ Component, pageProps }) {
         ></iframe>
       </noscript>
 
-      
+      {/* JSON-LD Schema */}
+      <Script id="json-ld-schema" type="application/ld+json" strategy="afterInteractive">
+        {`
+          {
+            "@context": "https://schema.org/",
+            "@type": "WebSite",
+            "name": "Fuzhio",
+            "url": "https://fuzhio.org/",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://fuzhio.org/{search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          }
+        `}
+      </Script>
+
+      {/* Page Component */}
       <Component {...pageProps} />
-      </>
+    </>
   );
 }
 

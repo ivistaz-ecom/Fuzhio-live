@@ -11,9 +11,9 @@ const index = () => {
       <NextSeo
         title="Fuzhio Health and Business Services"
         description="Fuzhio is an eco social venture that aims to enhance value chain efficiencies of products that resolve socio economic and environmental issues"
-        canonical="https://www.canonical.ie/"
+        canonical="https://fuzhio.org/"
         openGraph={{
-          url: 'https://www.url.ie/a',
+          url: 'https://fuzhio.org/',
           title: 'Fuzhio Health and Business Services',
           description: 'Fuzhio is an eco social venture that aims to enhance value chain efficiencies of products that resolve socio economic and environmental issues',
           images: [

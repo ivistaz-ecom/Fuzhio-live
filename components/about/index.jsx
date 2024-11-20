@@ -21,9 +21,9 @@ const index = () => {
       <NextSeo
         title="Ecosocial venture enhancing value-chain and environment"
         description="Enhancing value chain efficiencies of products that resolve socio economic and environmental issues, Fuzio supports marginalised communities and promotes a sustainable environment"
-        canonical="https://www.canonical.ie/"
+        canonical="https://fuzhio.org/about"
         openGraph={{
-          url: 'https://www.url.ie/a',
+          url: 'https://fuzhio.org/about',
           title: 'Ecosocial venture enhancing value-chain and environment',
           description: 'Enhancing value chain efficiencies of products that resolve socio economic and environmental issues, Fuzio supports marginalised communities and promotes a sustainable environment',
           images: [
