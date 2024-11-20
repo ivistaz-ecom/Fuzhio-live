@@ -6,8 +6,8 @@ import { Col, Container, Image, Row } from 'react-bootstrap';
 
 const Home = () => {
     return (
-        <Container fluid style={{ background: '#F5F5F5' }} className='p-lg-5 p-3'>
-            <Container className='bg-white px-lg-5 p-3 custom-blog-design' >
+        <Container fluid style={{ background: '#F5F5F5' }} className='p-lg-5 p-3 pt-4'>
+            <Container className='bg-white px-lg-5 p-3 custom-blog-design mt-5' >
                 <Row className='px-lg-5 p-3'>
                     {posts.map(post => (
                         <div key={post.title} className='py-3 mt-5 shadow'>
