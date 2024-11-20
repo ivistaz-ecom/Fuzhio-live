@@ -1,58 +1,39 @@
-'use client'
-import React from 'react'
+"use client";
+import React from "react";
 
-import Header from '../common/Header';
-import Footer from '../common/Footer';
+import Header from "../common/Header";
+import Footer from "../common/Footer";
 
-import Agriculture from './Agriculture';
-import AgriBanner from './AgriBanner';
-import { NextSeo } from 'next-seo';
+import Agriculture from "./Agriculture";
+import AgriBanner from "./AgriBanner";
+import SeoComponents from "../SeoComponents/Seo";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
 
 const index = () => {
+  const pathname = usePathname();
+  const [domainName, setDomainName] = useState("");
+  const title = "Ensures food & income security for smallholder farmers ";
+  const description =
+    "Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology";
+  const path = `${pathname}`;
+  const metaImage = "";
+
   return (
     <>
-
-      <NextSeo
-        title="Ensures food & income security for smallholder farmers"
-        description="Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology"
-        canonical="https://fuzhio.org/agriculture"
-        openGraph={{
-          url: 'https://fuzhio.org/agriculture',
-          title: 'Ensures food & income security for smallholder farmers',
-          description: 'Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology',
-          images: [
-            {
-              url: '/fuzhio_logo.png',
-              width: 800,
-              height: 600,
-              alt: 'Awards and Recognitions',
-              type: 'image/jpeg',
-            },
-            {
-              url: '/fuzhio_logo.png',
-              width: 900,
-              height: 800,
-              alt: 'Awards and Recognitions',
-              type: 'image/jpeg',
-            },
-            { url: '/fuzhio_logo.png' },
-            { url: '/fuzhio_logo.png' },
-          ],
-          siteName: 'SiteName',
-        }}
-        twitter={{
-          handle: '@handle',
-          site: '@site',
-          cardType: 'summary_large_image',
-        }}
+      <SeoComponents
+        title={title}
+        description={description}
+        path={path}
+        metaImage={metaImage}
       />
+
       <Header />
       <AgriBanner />
       <Agriculture />
       <Footer />
     </>
+  );
+};
 
-  )
-}
-
-export default index
+export default index;

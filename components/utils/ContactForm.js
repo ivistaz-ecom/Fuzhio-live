@@ -60,7 +60,7 @@ const ContactForm = () => {
 
         try {
             const response = await axios.post(
-                'https://beta.fuzhio.org/wp-json/contact-form-7/v1/contact-forms/2448/feedback',
+                'https://docs.fuzhio.org/wp-json/contact-form-7/v1/contact-forms/18/feedback',
                 formData,
                 {
                     headers: {
