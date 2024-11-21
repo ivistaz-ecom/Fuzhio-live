@@ -178,17 +178,6 @@ function SearchModal() {
                     )
                   )}
                 </div>
-
-                {/* Modal Footer */}
-                {/* <div className="modal-footer">
-                <button
-                  type="button"
-                  className="btn btn-secondary"
-                  onClick={() => setOpenModal(false)}
-                >
-                  Close
-                </button>
-              </div> */}
               </div>
             </div>
           </div>

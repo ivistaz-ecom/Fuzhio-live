@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import Link from "next/link";
-import SearchModal from "../Header/SearchModul";
+// import SearchModal from "../Header/SearchModul";
 import { useRouter } from "next/router";
 
 function Header() {
@@ -145,9 +145,9 @@ function Header() {
                     Blog
                   </Link>
                 </Col>
-                <Col>
+                {/* <Col>
                   <SearchModal />
-                </Col>
+                </Col> */}
               </Row>
             </Col>
           </Row>
@@ -171,9 +171,9 @@ function Header() {
             </Col>
 
             {/* Search Modal */}
-            <Col xs={3} className="d-flex justify-content-end p-0">
+            {/* <Col xs={3} className="d-flex justify-content-end p-0">
               <SearchModal />
-            </Col>
+            </Col> */}
 
             {/* Menu Icon */}
             <Col
