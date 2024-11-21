@@ -6,7 +6,7 @@ const posts = [
     image: "/assets/blog/blog_img_1.jpg",
     date: "January 27, 2022",
     excerpt:
-      "The explosive growth in GDP across countries might make it seem like all is hunky dory with the world. But this has also brought along a heap of other issues that we have all turned a blind eye to. Right from inequality, increasing greenhouse gas emissions, to devastating consequences of climate change, and pandemics, we …",
+      "Adopting a circular economy can create jobs, reduce waste, and promote sustainable economic growth in communities worldwide",
     content: [
       {
         type: "paragraph",
@@ -47,7 +47,7 @@ const posts = [
     image: "/assets/blog/blog_img_2.jpg",
     date: "January 27, 2022",
     excerpt:
-      "What do we mean when we talk about creating a circular economy? A circular economy, by design, is supposed to be regenerative. All the components that are part of this economy flow alongside each other in a closed loop-like system, and are not meant to be used once and discarded.  Now, can you imagine what …",
+      "A circular economy can help tackle plastic waste, driving sustainability while creating a cleaner, no-garbage world.",
     content: [
       {
         type: "paragraph",
@@ -86,7 +86,7 @@ const posts = [
     image: "/assets/blog/blog_img_3.jpg",
     date: "August 25, 2021",
     excerpt:
-      "An FAO (Food and Agriculture Organization) report states that approximately 1.5 billion people are engaged in smallholder agriculture across the world. And that number includes a whopping 75% of the world’s poorest people, most of who live in rural communities, and whose livelihood prospects are fully dependent on agriculture. Despite the fact that their role …",
+      "There is an urgent need for better market linkages to empower farmers, improve incomes, and build sustainable agricultural communities.",
     content: [
       {
         type: "paragraph",

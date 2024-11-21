@@ -1,9 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { FaSearch, FaTimesCircle } from "react-icons/fa"; // Importing React Icons
+import { FaSearch } from "react-icons/fa"; // Importing React Icons
+import { IoMdClose } from "react-icons/io";
 import posts from "../../Templates/Data/posts"; // Import local data
 import { useRouter } from "next/router"; // Import useRouter from Next.js
+import { IoArrowBack } from "react-icons/io5";
 
 function SearchModal() {
   const [openModal, setOpenModal] = useState(false);
@@ -20,6 +22,12 @@ function SearchModal() {
     { title: "Blog", path: "/blog" },
     { title: "About Us", path: "/about" },
     { title: "Contact", path: "/contact" },
+    { title: "Agriculture", path: "/agriculture" },
+    { title: "Fuzhio & Covid Response", path: "/fuzhio-covid-response" },
+    {
+      title: "Community Engagement",
+      path: "https://community-engagement.fuzhio.org/",
+    },
   ];
 
   useEffect(() => {
@@ -57,81 +65,122 @@ function SearchModal() {
   };
 
   return (
-    <div>
-      {/* Search Button */}
-      <Link href="" onClick={() => setOpenModal(true)}>
-        <FaSearch style={{ color: isOnBlogPage ? "black" : "#ffd0b3" }} /> {/* Conditionally set icon color */}
-      </Link>
+    <>
+      <style>
+        {`
+          .arrow-icon {
+            color: #b34738 !important;
+          }
+          .link-text {
+            color: #b34738 !important;
+          }
+          .hover-effect {
+            transition: color 0.3s ease;
+          }
 
-      {/* Modal */}
-      {openModal && (
-        <div
-          className="modal fade show d-block"
-          tabIndex="-1"
-          aria-hidden={!openModal} // aria-hidden for accessibility
-          role="dialog"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              {/* Modal Header */}
-              <div className="modal-header">
-                <input
-                  type="text"
-                  id="search"
-                  className="form-control"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  required
-                />
-                <Link
-                  href=""
-                  className="btn-close"
-                  aria-label="Close"
-                  onClick={() => setOpenModal(false)}
-                >
-                  <FaTimesCircle style={{ color: "black" }} /> {/* Set close icon color to black */}
-                </Link>
-              </div>
+          .hover-effect:hover .arrow-icon,
+          .hover-effect:hover .link-text {
+            color: black !important;
+          }
+        `}
+      </style>
+      <div>
+        {/* Search Button */}
+        <Link href="" onClick={() => setOpenModal(true)}>
+          <FaSearch style={{ color: isOnBlogPage ? "black" : "#ffd0b3" }} />{" "}
+          {/* Conditionally set icon color */}
+        </Link>
 
-              {/* Modal Body */}
-              <div className="modal-body">
-                {resultCount > 0 && (
-                  <p>
-                    Total <strong>{resultCount}</strong> results found.
-                  </p>
-                )}
-                {filteredResults.length > 0 ? (
-                  <ul className="list-group">
-                    {filteredResults.map((item, index) => {
-                      // Determine if item is a post or a page
-                      const isPage = pages.some((page) => page.title === item.title);
-                      const path = isPage
-                        ? item.path // Use page path for pages
-                        : `/posts/${item.title.toLowerCase().replace(/\s+/g, "-")}`; // Generate slug for posts
+        {/* Modal */}
+        {openModal && (
+          <div
+            className="modal fade show d-block"
+            tabIndex="-1"
+            aria-hidden={!openModal} // aria-hidden for accessibility
+            role="dialog"
+          >
+            <div className="modal-dialog modal-dialog-centered">
+              <div className="modal-content">
+                {/* Modal Header */}
+                <div className="modal-header position-relative flex gap-3">
+                  <input
+                    type="text"
+                    id="search"
+                    className="form-control"
+                    placeholder="Search..."
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    required
+                  />
+                  <IoMdClose
+                    className="top-0 end-0 p-1"
+                    style={{
+                      color: "black",
+                      cursor: "pointer",
+                      fontSize: "1.5rem",
+                      marginLeft: "1rem",
+                    }}
+                    aria-label="Close"
+                    onClick={() => setOpenModal(false)}
+                  />
+                </div>
 
-                      return (
-                        <li
-                          key={index}
-                          className="list-group-item d-flex justify-content-between align-items-center"
-                        >
-                          <span
-                            onClick={() => handleResultClick(path)}
-                            style={{ cursor: "pointer" }}
+                {/* Modal Body */}
+                <div className="modal-body">
+                  {resultCount > 0 && (
+                    <p>
+                      Total <strong>{resultCount}</strong> results found.
+                    </p>
+                  )}
+                  {filteredResults.length > 0 ? (
+                    <ul className="list-group">
+                      {filteredResults.map((item, index) => {
+                        // Determine if item is a post or a page
+                        const isPage = pages.some(
+                          (page) => page.title === item.title
+                        );
+                        const path = isPage
+                          ? item.path // Use page path for pages
+                          : `/posts/${item.title
+                              .toLowerCase()
+                              .replace(/\s+/g, "-")}`; // Generate slug for posts
+
+                        return (
+                          <li
+                            key={index}
+                            className="list-group-item d-flex justify-content-between align-items-center"
                           >
-                            {item.title}
-                          </span>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                ) : (
-                  searchQuery && <p className="text-muted">No results found.</p>
-                )}
-              </div>
+                            <span
+                              onClick={() => handleResultClick(path)}
+                              style={{ cursor: "pointer" }}
+                            >
+                              {item.title}
+                            </span>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  ) : (
+                    searchQuery && (
+                      <div className="text-center">
+                        <p className="text-muted mb-3">No results found.</p>
+                        <div className="hover-effect">
+                          <IoArrowBack className="arrow-icon" />
+                          <Link
+                            href="/"
+                            onClick={() => setOpenModal(false)}
+                            className="link-text"
+                          >
+                            Back to home
+                          </Link>
+                        </div>
+                      </div>
+                    )
+                  )}
+                </div>
 
-              {/* Modal Footer */}
-              <div className="modal-footer">
+                {/* Modal Footer */}
+                {/* <div className="modal-footer">
                 <button
                   type="button"
                   className="btn btn-secondary"
@@ -139,12 +188,13 @@ function SearchModal() {
                 >
                   Close
                 </button>
+              </div> */}
               </div>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 }
 
