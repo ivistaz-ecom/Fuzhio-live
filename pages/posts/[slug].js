@@ -1,9 +1,7 @@
 import { useRouter } from 'next/router';
 import posts from '/components/Templates/Data/posts';
 import slugify from 'slugify';
-
 import { Container, Image, Row } from 'react-bootstrap';
-
 import Header from '../../components/common/Header';
 import Footer from '../../components/common/Footer';
 import SeoComponents from "../../components/SeoComponents/Seo";

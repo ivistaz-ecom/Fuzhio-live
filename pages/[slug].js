@@ -2,11 +2,39 @@ import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import Header from "../components/common/Header";
 import Footer from "../components/common/Footer";
+import config from "../config.json";
 
 export default function Page({ data }) {
   const formatPublishedDate = (dateString) => {
     const options = { year: "numeric", month: "long", day: "numeric" };
     return new Date(dateString).toLocaleDateString(undefined, options);
+  };
+
+  const generateSchemaMarkup = (post) => {
+    return {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": post.title.rendered,
+      "description": post.acf?.meta_description || "No description provided",
+      "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": `${config.mainWebUrl}/${post.slug}`,
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Your Organization Name",
+        "logo": {
+          "@type": "ImageObject",
+          "url": `${config.mainWebUrl}/path-to-logo.png`,
+        },
+      },
+      "image": {
+        "@type": "ImageObject",
+        "url": post.acf?.featured_image_url || `${config.mainWebUrl}/default-image.png`,
+        "height": 600,
+        "width": 1200,
+      },
+    };
   };
 
   return (
@@ -41,6 +69,14 @@ export default function Page({ data }) {
                 <div
                   dangerouslySetInnerHTML={{ __html: item.content.rendered }}
                 />
+
+                {/* Add Schema Markup */}
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(generateSchemaMarkup(item)),
+                  }}
+                />
               </div>
             ))}
           </div>
@@ -55,7 +91,7 @@ export default function Page({ data }) {
 // Fetch data server-side
 export async function getServerSideProps(context) {
   const { slug } = context.params;
-  const url = `https://docs.fuzhio.org/wp-json/wp/v2/fuzhio-seo-blog?slug=${slug}`;
+  const url = `${config.wpApiUrl}/fuzhio-seo-blog?slug=${slug}`;
   const res = await fetch(url);
   const data = await res.json();
 
