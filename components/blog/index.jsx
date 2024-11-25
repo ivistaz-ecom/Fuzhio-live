@@ -18,6 +18,7 @@ const index = () => {
     "Browse through our blog section to understand how we constantly strive to improve value chains and ensure a business growth plan for farmers that enhances profitability";
   const path = `${pathname}`;
   const metaImage = "";
+  const keywords = "";
   return (
     <>
       <SeoComponents
@@ -25,6 +26,7 @@ const index = () => {
         description={description}
         path={path}
         metaImage={metaImage}
+        keywords={keywords}
       />
       
       <Header />

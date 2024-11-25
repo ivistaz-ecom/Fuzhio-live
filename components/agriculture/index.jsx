@@ -18,6 +18,7 @@ const index = () => {
     "Creating sustainable and gender equal opportunities for farmers to improve their market realizations and supporting through improvement in technology";
   const path = `${pathname}`;
   const metaImage = "";
+  const keywords = "";
 
   return (
     <>
@@ -26,6 +27,7 @@ const index = () => {
         description={description}
         path={path}
         metaImage={metaImage}
+        keywords={keywords}
       />
 
       <Header />

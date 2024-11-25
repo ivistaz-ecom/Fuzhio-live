@@ -19,6 +19,7 @@ function index() {
     "Our work during the time of the pandemic and in the form of Covid Action Collab, spanned geographies and helped support vulnerable communities";
   const path = `${pathname}`;
   const metaImage = "";
+  const keywords = "";
   return (
     <>
     
@@ -27,6 +28,8 @@ function index() {
         description={description}
         path={path}
         metaImage={metaImage}
+        keywords={keywords}
+        
       />
       <Header />
       <FuzhioBanner />

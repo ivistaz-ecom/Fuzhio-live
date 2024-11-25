@@ -22,6 +22,7 @@ const index = () => {
     "Enhancing value chain efficiencies of products that resolve socio economic and environmental issues, Fuzio supports marginalised communities and promotes a sustainable environment";
   const path = `${pathname}`;
   const metaImage = "";
+  const keywords = "";
 
   return (
     <>
@@ -30,6 +31,7 @@ const index = () => {
         description={description}
         path={path}
         metaImage={metaImage}
+        keywords={keywords}
       />
 
       <Header />
