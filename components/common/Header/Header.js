@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Container, Image, Row, Col } from "react-bootstrap";
 import Link from "next/link";
-// import SearchModal from "../Header/SearchModul";
+import SearchModal from "../Header/SearchModul";
 import { useRouter } from "next/router";
 
 function Header() {
@@ -38,12 +38,12 @@ function Header() {
         }
       `}</style>
 
-      <Container fluid className="position-absolute py-0 d-lg-block d-none">
+      <Container fluid className="position-absolute py-0 d-lg-block d-none ">
         {/* Desktop Menu Bar */}
-        <Container className="p-0 py-3">
+        <Container className="p-0 py-3 ">
           <Row>
             {/* Logo with Link */}
-            <Col lg={5} className="">
+            <Col lg={4} className="">
               <Col>
                 <Link className="navbar-brand" href="/">
                   <Image src="/fuzhio_logo.png" width={130} />
@@ -123,7 +123,7 @@ function Header() {
                 </Col>
 
                 {/* Fuzhio & Covid Response Link */}
-                <Col md={4}>
+                <Col md={3}>
                   <Link
                     href="/fuzhio-covid-response"
                     className={`custom-header-style ${
@@ -145,9 +145,10 @@ function Header() {
                     Blog
                   </Link>
                 </Col>
-                {/* <Col>
-                  <SearchModal />
-                </Col> */}
+       <Col md={1}>         
+        <SearchModal />
+        </Col>
+      
               </Row>
             </Col>
           </Row>
@@ -161,23 +162,23 @@ function Header() {
         className="position-absolute d-lg-none d-block"
         style={{ zIndex: "100" }}
       >
-        <Container>
-          <Row className="d-flex flex-row justify-content-between align-items-center">
+   <Container>
+          <Row className="d-flex flex-row justify-content-around p-0 gap-3">
             {/* Logo */}
-            <Col xs={6} className="p-0">
+            <Col xs={7} className="p-0">
               <Link className="navbar-brand" href="/">
                 <Image src="/fuzhio_logo.png" width={130} />
               </Link>
             </Col>
 
             {/* Search Modal */}
-            {/* <Col xs={3} className="d-flex justify-content-end p-0">
+            <Col xs={4} className="d-flex justify-content-end p-0 me-5">
               <SearchModal />
-            </Col> */}
+            </Col>
 
             {/* Menu Icon */}
             <Col
-              xs={2}
+              xs={1}
               className="d-flex justify-content-end align-items-center p-0"
             >
               <Col
@@ -275,7 +276,7 @@ function Header() {
               </Col>
             </Row>
           )}
-        </Container>
+     </Container>
       </Container>
     </>
   );
