@@ -8,6 +8,7 @@ function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // New loading state
   const router = useRouter();
 
   const pages = [
@@ -22,37 +23,27 @@ function SearchBar() {
     { title: "Fuzhio & Covid Response", path: "/fuzhio-covid-response" },
   ];
 
-  // Helper function to convert title to slug
-  const createSlug = (title) => {
-    return title
-      .toLowerCase()
-      .trim()
-      .replace(/\s+/g, "-") // Replace spaces with hyphens
-      .replace(/[^\w\-]+/g, "") // Remove non-alphanumeric characters except hyphens
-      .replace(/\-\-+/g, "-") // Replace multiple hyphens with a single one
-      .replace(/^-+/, "") // Remove leading hyphens
-      .replace(/-+$/, ""); // Remove trailing hyphens
-  };
-
-  // Effect to filter results based on search query
   useEffect(() => {
     const filterResults = () => {
       if (!searchQuery) {
         setFilteredResults([]);
+        setIsLoading(true); // Stop loading when query is empty
         return;
       }
 
-      // Filter pages based on title
+      // Start loading when filtering begins
+      setIsLoading(true);
+
       const pageResults = pages.filter((page) =>
         page.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
-      // Filter posts based on title
       const postResults = posts.filter((post) =>
         post.title.toLowerCase().includes(searchQuery.toLowerCase())
       );
 
-      setFilteredResults([...pageResults, ...postResults]); // Combine both pages and posts
+      setFilteredResults([...pageResults, ...postResults]);
+      setIsLoading(false); // Stop loading after filtering is complete
     };
 
     const debounceTimer = setTimeout(() => {
@@ -63,16 +54,14 @@ function SearchBar() {
   }, [searchQuery]);
 
   const handleResultClick = (path, title) => {
-    setSearchQuery(""); // Clear search input after selection
-    setFilteredResults([]); // Clear search results
-    setIsExpanded(false); // Collapse search bar
+    setSearchQuery("");
+    setFilteredResults([]);
+    setIsExpanded(false);
 
-    // Check if the path is a valid string
     if (path && typeof path === "string" && path.trim() !== "") {
-      // Navigate to the generated URL (either a page or post)
       router.push(path);
     } else {
-      console.error("Invalid URL: ", path); // Debug log if the URL is invalid
+      console.error("Invalid URL: ", path);
     }
   };
 
@@ -100,7 +89,7 @@ function SearchBar() {
           }
 
           .search-container.expanded {
-            width: 250px; /* Expanded width */
+            width: 250px;
           }
 
           .search-icon {
@@ -184,11 +173,11 @@ function SearchBar() {
 
       <div
         className={`search-container ${isExpanded ? "expanded" : ""}`}
-        onMouseLeave={() => setIsExpanded(false)} // Close when mouse leaves the container
+        onMouseLeave={() => setIsExpanded(false)}
       >
         <FaSearch
           className="search-icon"
-          onMouseEnter={() => setIsExpanded(true)} // Expand when hovering over the icon
+          onMouseEnter={() => setIsExpanded(true)}
         />
         <input
           type="text"
@@ -196,34 +185,37 @@ function SearchBar() {
           placeholder="Search..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          onFocus={() => setIsExpanded(true)} // Expand when focused
+          onFocus={() => setIsExpanded(true)}
         />
 
-        {isExpanded && searchQuery && (
+        {isExpanded && (
           <div className="search-results">
-            {filteredResults.length > 0 ? (
-              filteredResults.map((item, index) => {
-                // Determine if item is a page or a post
-                const isPage = pages.some((page) => page.title === item.title);
+            {searchQuery ? (
+              isLoading ? (
+                <div className="search-result-item">Loading...</div>
+              ) : filteredResults.length > 0 ? (
+                filteredResults.map((item, index) => {
+                  const isPage = pages.some(
+                    (page) => page.title === item.title
+                  );
+                  const path = isPage
+                    ? item.path
+                    : `/posts/${item.title.toLowerCase().replace(/\s+/g, "-")}`;
 
-                // Generate path for pages or posts
-                const path = isPage
-                  ? item.path // Use page path for pages
-                  : `/posts/${item.title.toLowerCase().replace(/\s+/g, "-")}`; // Generate slug for posts
-
-                return (
-                  <div
-                    key={index}
-                    className="search-result-item"
-                    onClick={() => handleResultClick(path, item.title)} // Use the generated path for navigation
-                  >
-                    {item.title} {/* Show title */}
-                  </div>
-                );
-              })
-            ) : (
-              <div className="search-result-item">No results found</div>
-            )}
+                  return (
+                    <div
+                      key={index}
+                      className="search-result-item"
+                      onClick={() => handleResultClick(path, item.title)}
+                    >
+                      {item.title}
+                    </div>
+                  );
+                })
+              ) : (
+                <div className="search-result-item">No results found</div>
+              )
+            ) : null}
           </div>
         )}
       </div>
