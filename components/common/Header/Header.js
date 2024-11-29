@@ -24,19 +24,20 @@ function Header() {
   };
 
   // Check if we're on the '/blog' page
-  const isBlogPage = router.pathname === "/blog";
+  const isBlogPage = router.pathname === "/blog" || router.pathname.startsWith("/posts/");
+
 
   return (
     <>
       {/* Apply custom styling for the Blog page */}
       <style jsx global>{`
-        body${isBlogPage ? " .custom-header-style" : ""} {
-          color: ${isBlogPage ? "black" : ""};
-        }
-        .custom-header-style {
-          white-space: nowrap; /* Prevent wrapping of the text */
-        }
-      `}</style>
+  body${isBlogPage ? " .custom-header-style" : ""} {
+    color: ${isBlogPage ? "black" : ""};
+  }
+  .custom-header-style {
+    white-space: nowrap; /* Prevent wrapping of the text */
+  }
+`}</style>
 
       <Container fluid className="position-absolute py-0 d-lg-block d-none ">
         {/* Desktop Menu Bar */}

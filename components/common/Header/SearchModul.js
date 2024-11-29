@@ -8,7 +8,7 @@ function SearchBar() {
   const [searchQuery, setSearchQuery] = useState("");
   const [filteredResults, setFilteredResults] = useState([]);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isLoading, setIsLoading] = useState(false); // New loading state
+  const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
   const pages = [
@@ -27,11 +27,10 @@ function SearchBar() {
     const filterResults = () => {
       if (!searchQuery) {
         setFilteredResults([]);
-        setIsLoading(true); // Stop loading when query is empty
+        setIsLoading(false);
         return;
       }
 
-      // Start loading when filtering begins
       setIsLoading(true);
 
       const pageResults = pages.filter((page) =>
@@ -43,7 +42,7 @@ function SearchBar() {
       );
 
       setFilteredResults([...pageResults, ...postResults]);
-      setIsLoading(false); // Stop loading after filtering is complete
+      setIsLoading(false);
     };
 
     const debounceTimer = setTimeout(() => {
@@ -64,6 +63,9 @@ function SearchBar() {
       console.error("Invalid URL: ", path);
     }
   };
+
+  const isSpecialPage =
+    router.pathname === "/blog" || router.pathname.startsWith("/posts/");
 
   return (
     <>
@@ -94,7 +96,7 @@ function SearchBar() {
 
           .search-icon {
             font-size: 18px;
-            color: #FFD0B3;
+            color: ${isSpecialPage ? "black" : "#FFD0B3"};
             cursor: pointer;
             flex-shrink: 0;
             margin-right: 8px;
@@ -102,7 +104,7 @@ function SearchBar() {
           }
 
           .search-container:hover .search-icon {
-            color: #A0665F;
+            color: ${isSpecialPage ? "#333" : "#A0665F"};
           }
 
           .search-input {
