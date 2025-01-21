@@ -18,9 +18,10 @@ const WhoAreWe = () => {
       {/* Section 1 */}
       <Container fluid style={{ backgroundColor: "#6e180CAB" }}>
         <Container className="py-5">
-          <Row md={12} gap={4}>
+          <Row md={12} gap={4} className="d-flex justify-content-center align-items-center">
             <Col
-              md={6}
+              md={12}
+              lg={6}
               sm={12}
               className="d-flex flex-column justify-content-center lato-regular p-md-5"
             >
@@ -51,7 +52,7 @@ const WhoAreWe = () => {
                 </div>
               </Row>
             </Col>
-            <Col md={6} sm={12} className="mt-5 mt-md-0">
+            <Col md={6} sm={12} className="mt-5 mt-md-0 ">
               <Image
                 src="/home/Vijayalakshmi_who_are_we.jpg"
                 alt="vl_img"

@@ -616,3 +616,9 @@ color: #6E170C;
     margin-top: 20px;
   } 
 }
+
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
