@@ -1,16 +1,16 @@
-import React from "react";
-import { Col, Container, Image, Row } from "react-bootstrap";
+import React from "react"
+import { Col, Container, Image, Row } from "react-bootstrap"
 
-import VLImage from "/public/home/Vijayalakshmi_who_are_we.jpg";
-import MapImage from "/public/home/map.png";
-import Girl1 from "/public/home/fuzhio_home_girl1.jpg";
-import Girl2 from "/public/home/fuzhio_home_girl2.jpg";
-import Girl3 from "/public/home/fuzhio_home_girl3.jpg";
+import VLImage from "/public/home/Vijayalakshmi_who_are_we.jpg"
+import MapImage from "/public/home/map.png"
+import Girl1 from "/public/home/fuzhio_home_girl1.jpg"
+import Girl2 from "/public/home/fuzhio_home_girl2.jpg"
+import Girl3 from "/public/home/fuzhio_home_girl3.jpg"
 
 // import NumberCounter from '../NumberCounter/NumberComponent'
-import PartnersCarousel from "./parterns_carousel";
+import PartnersCarousel from "./parterns_carousel"
 
-import NumberCounter from "../NumberCounter/NumberComponent";
+import NumberCounter from "../NumberCounter/NumberComponent"
 
 const WhoAreWe = () => {
   return (
@@ -18,7 +18,11 @@ const WhoAreWe = () => {
       {/* Section 1 */}
       <Container fluid style={{ backgroundColor: "#6e180CAB" }}>
         <Container className="py-5">
-          <Row md={12} gap={4} className="d-flex justify-content-center align-items-center">
+          <Row
+            md={12}
+            gap={4}
+            className="d-flex justify-content-center align-items-center"
+          >
             <Col
               md={12}
               lg={6}
@@ -136,76 +140,71 @@ const WhoAreWe = () => {
       {/* Our Impact */}
 
       <Container>
-        <Row className="p-md-5 ">
-          <Col md={4}>
-            <h1
-              className="w-50 d-md-block d-none py-3"
-              style={{
-                color: "black",
-                borderBottom: "2px solid #923022",
-                letterSpacing: "5px",
-              }}
-            >
-              Our Impact
-            </h1>
-            <h1 className="w-100 d-md-none d-block p-5 text-center">
-              Our Impact
-            </h1>
-          </Col>
+  <Row className="p-md-5">
+    <Col className="text-center">
+      <h1
+        className="d-md-block d-none py-3 mx-auto text-center"
+        style={{
+          color: "black",
+          borderBottom: "2px solid #923022",
+          letterSpacing: "5px",
+          width: "300px",
+        }}
+      >
+        Our Impact
+      </h1>
+      <h1 className="d-md-none d-block p-3 text-center">Our Impact</h1>
+    </Col>
+  </Row>
 
-          <Col className="w-100 ">
-            <Row className="text-center d-flex flex-column text-center flex-md-row">
-              <Col className="">
-                <NumberCounter
-                  start={0}
-                  end={25000}
-                  symbol="+"
-                  title="Farmers we work with"
-                />
-              </Col>
-              <Col className="">
-                <NumberCounter
-                  start={0}
-                  end={25000}
-                  symbol="ha+"
-                  title="Area under cultivation"
-                />
-              </Col>
-            </Row>
-            <Row className="text-center d-flex flex-column text-center flex-md-row">
-              <Col className="">
-                <NumberCounter
-                  start={0}
-                  end={25}
-                  symbol="+"
-                  title="FPOs we work with"
-                />
-              </Col>
-              <Col className="">
-                <NumberCounter start={0} end={5} title="States we work in" />
-              </Col>
-            </Row>
-            <Row className=" text-center d-flex flex-column text-center flex-md-row ">
-              <Col className="mt-4">
-                <NumberCounter
-                  start={0}
-                  end={13500}
-                  symbol="+"
-                  title="Trees planted"
-                />
-              </Col>
-              <Col className="">
-                <NumberCounter
-                  start={30}
-                  end={365}
-                  symbol=" tonnes+"
-                  title="Plastic saved from entering the ocean"
-                />
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+  <Row className="text-center">
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter
+        start={0}
+        end={25000}
+        symbol="+"
+        title="Farmers we work with"
+      />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter
+        start={0}
+        end={25000}
+        symbol="ha+"
+        title="Area under cultivation"
+      />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter
+        start={0}
+        end={25}
+        symbol="+"
+        title="FPOs we work with"
+      />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter start={0} end={5} title="States we work in" />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter
+        start={0}
+        end={13500}
+        symbol="+"
+        title="Trees planted"
+      />
+    </Col>
+    <Col xs={12} md={4} className="mb-4">
+      <NumberCounter
+        start={30}
+        end={365}
+        symbol=" tonnes+"
+        title="Plastic saved from entering the ocean"
+      />
+    </Col>
+  </Row>
+</Container>
+
+
 
       {/* Section 5 */}
       {/* Gallery */}
@@ -245,7 +244,7 @@ const WhoAreWe = () => {
         </Container>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default WhoAreWe;
+export default WhoAreWe

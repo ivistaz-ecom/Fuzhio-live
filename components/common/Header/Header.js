@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { IoMdClose } from "react-icons/io"
 import { Container, Image, Row, Col } from "react-bootstrap"
 import Link from "next/link"
@@ -7,45 +7,49 @@ import { useRouter } from "next/router"
 import { FaChevronDown, FaChevronUp } from "react-icons/fa"
 import Collapse from "react-bootstrap/Collapse"
 import { GiHamburgerMenu } from "react-icons/gi"
-import { useEffect } from "react"
 
 function Header() {
   const router = useRouter()
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
 
-  const [isOnClick, setIsOnClick] = useState(false)
-
-  // Function to check if a link is active
-  const isActive = (href) => {
-    return router.pathname === href
-  }
+  // Menu items configuration
+  const menuItems = [
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    {
+      name: "Our Work",
+      href: "",
+      submenu: [
+        { name: "Agriculture", href: "/agriculture" },
+        {
+          name: "Community Engagement",
+          href: "https://community-engagement.fuzhio.org/",
+          external: true,
+        },
+      ],
+    },
+    { name: "Fuzhio & Covid Response", href: "/fuzhio-covid-response" },
+    { name: "Blog", href: "/blog" },
+  ]
 
   // Check if we're on the '/blog' page
   const isBlogPage =
     router.pathname === "/blog" || router.pathname.startsWith("/posts/")
 
-  // Handle closing the mobile menu
-  const handleCloseMenu = () => {
-    setIsOnClick(false)
-  }
+  // Function to check if a link is active
+  // const isActive = (href) => router.pathname === href
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const [isSubMenuOpen, setIsSubMenuOpen] = useState(false)
-
-  const handleMobileMenuToggle = () => {
-    setIsMenuOpen(!isMenuOpen)
-  }
-
-  const handleSubMenuToggle = () => {
-    setIsSubMenuOpen(!isSubMenuOpen)
-  }
+  const handleMobileMenuToggle = () => setIsMenuOpen(!isMenuOpen)
+  const handleSubMenuToggle = () => setIsSubMenuOpen(!isSubMenuOpen)
 
   const handleMenuItemClick = (href) => {
     if (router.pathname === href) {
-      setIsMenuOpen(false) // Close the menu if the current page is the same
+      setIsMenuOpen(false) // Close the menu if clicked on current page
     }
   }
 
-  // Inside your component
+  // Add/remove no-scroll class to body when menu opens/closes
   useEffect(() => {
     if (isMenuOpen) {
       document.body.classList.add("no-scroll")
@@ -53,11 +57,20 @@ function Header() {
       document.body.classList.remove("no-scroll")
     }
 
-    // Cleanup when the component unmounts
-    return () => {
-      document.body.classList.remove("no-scroll")
+    return () => document.body.classList.remove("no-scroll")
+  }, [isMenuOpen])
+
+  const isActive = (href, submenu = []) => {
+    if (submenu.length > 0) {
+      return submenu.some(
+        (subItem) =>
+          !subItem.external && router.pathname.startsWith(subItem.href)
+      )
     }
-  }, [isMenuOpen]);
+    if (!href || href.startsWith("http")) return false
+    if (href === "/") return router.pathname === "/"
+    return router.pathname.startsWith(href)
+  }
 
   return (
     <>
@@ -68,10 +81,21 @@ function Header() {
         .custom-header-style {
           white-space: nowrap;
         }
+        ${isBlogPage
+          ? `
+    .custom-header-style:hover {
+      color: black !important;
+    }
+  `
+          : ""}
       `}</style>
 
       {/* Desktop Menu Bar */}
-      <Container fluid className="position-absolute py-0 d-lg-block d-none ">
+      <Container
+        fluid
+        className="position-absolute py-0 d-lg-block d-none"
+        style={{ zIndex: 999 }}
+      >
         <Container className="p-0 py-3 ">
           <Row>
             <Col lg={4}>
@@ -79,108 +103,124 @@ function Header() {
                 <Image src="/fuzhio_logo.png" width={130} />
               </Link>
             </Col>
-            <Col className="d-flex flex-column justify-content-center">
-              <Row className="d-flex flex-row flex-wrap gap-3 justify-content-between">
-                <Col lg={2} className="text-center">
-                  <Link
-                    href="/"
-                    className={`custom-header-style ${
-                      isActive("/") ? "active-link" : ""
-                    }`}
-                    onClick={() => handleMenuItemClick("/")}
-                  >
-                    Home
-                  </Link>
-                </Col>
+            <Col className="d-flex flex-column justify-content-center ">
+              <Row className="d-flex flex-row flex-wrap gap-3 justify-content-between ">
+                {menuItems.map((item, index) => {
+                  if (item.name === "Our Work") {
+                    return (
+                      <Col
+                        key={index}
+                        className="text-center position-relative p-0"
+                        md={3}
+                      >
+                        <Col className="p-0 hover-ourwork">
+                          <Link
+                            href={item.href}
+                            className={`custom-header-style our-work-af ${
+                              isActive(item.href, item.submenu)
+                                ? "active-link"
+                                : ""
+                            }`}
+                            onClick={() => handleMenuItemClick(item.href)}
+                          >
+                            {item.name}
+                          </Link>
+                        </Col>
 
-                <Col lg={1} className="text-center">
-                  <Link
-                    href="/about"
-                    className={`custom-header-style ${
-                      isActive("/about") ? "active-link" : ""
-                    }`}
-                    onClick={() => handleMenuItemClick("/about")}
-                  >
-                    About
-                  </Link>
-                </Col>
-
-                <Col className="text-center position-relative p-0" md={3}>
-                  <Col className="p-0 hover-ourwork">
-                    <Link
-                      href=""
-                      className={`custom-header-style our-work-af ${
-                        isActive("/our-work") ? "active-link" : ""
-                      }`}
-                      onClick={() => handleMenuItemClick("/our-work")}
-                    >
-                      Our Work
-                    </Link>
-                  </Col>
-
-                  <div className="p-0 our-work-element pt-3">
-                    <Col
-                      className="p-0"
-                      style={{
-                        width: "180px",
-                        left: "11px",
-                        display: "flex",
-                        flexDirection: "column",
-                        zIndex: "100",
-                      }}
-                    >
-                      <Col className="p-0 text-left py-1">
+                        <div className="p-0 our-work-element pt-3 ">
+                          <Col
+                            className="p-0"
+                            style={{
+                              width: "180px",
+                              left: "11px",
+                              display: "flex",
+                              flexDirection: "column",
+                              zIndex: "100",
+                            }}
+                          >
+                            {item.submenu.map((subItem, subIndex) => (
+                              <Col
+                                key={subIndex}
+                                className="p-0 text-left py-1 custom-header-style  "
+                              >
+                                <Link
+                                  href={subItem.href}
+                                  className={`custom-header-style ps-5 border-0 ${
+                                    isActive(subItem.href) ? "active-link" : ""
+                                  }`}
+                                  onClick={() =>
+                                    handleMenuItemClick(subItem.href)
+                                  }
+                                  target={
+                                    subItem.external ? "_blank" : undefined
+                                  }
+                                >
+                                  {subItem.name}
+                                </Link>
+                              </Col>
+                            ))}
+                          </Col>
+                        </div>
+                      </Col>
+                    )
+                  } else if (item.name === "Fuzhio & Covid Response") {
+                    return (
+                      <Col key={index} md={3}>
                         <Link
-                          href="/agriculture"
-                          className="custom-header-style ps-5 border border-0"
-                          onClick={() => handleMenuItemClick("/agriculture")}
+                          href={item.href}
+                          className={`custom-header-style ${
+                            isActive(item.href) ? "active-link" : ""
+                          }`}
+                          onClick={() => handleMenuItemClick(item.href)}
                         >
-                          Agriculture
+                          {item.name}
                         </Link>
                       </Col>
-                      <Col className="p-0 text-left py-1">
+                    )
+                  } else if (item.name === "Home") {
+                    return (
+                      <Col key={index} lg={2} className="text-center">
                         <Link
-                          href="https://community-engagement.fuzhio.org/"
-                          target="_blank"
-                          className="custom-header-style border border-0"
-                          onClick={() =>
-                            handleMenuItemClick(
-                              "https://community-engagement.fuzhio.org/"
-                            )
-                          }
+                          href={item.href}
+                          className={`custom-header-style ${
+                            isActive(item.href) ? "active-link" : ""
+                          }`}
+                          onClick={() => handleMenuItemClick(item.href)}
                         >
-                          Community Engagement
+                          {item.name}
                         </Link>
                       </Col>
-                    </Col>
-                  </div>
-                </Col>
-
-                <Col md={3}>
-                  <Link
-                    href="/fuzhio-covid-response"
-                    className={`custom-header-style ${
-                      isActive("/fuzhio-covid-response") ? "active-link" : ""
-                    }`}
-                    onClick={() =>
-                      handleMenuItemClick("/fuzhio-covid-response")
-                    }
-                  >
-                    Fuzhio & Covid Response
-                  </Link>
-                </Col>
-
-                <Col className="text-center" lg={1}>
-                  <Link
-                    href="/blog"
-                    className={`custom-header-style ${
-                      isActive("/blog") ? "active-link" : ""
-                    }`}
-                    onClick={() => handleMenuItemClick("/blog")}
-                  >
-                    Blog
-                  </Link>
-                </Col>
+                    )
+                  } else if (item.name === "Blog") {
+                    return (
+                      <Col key={index} className="text-center" lg={1}>
+                        <Link
+                          href={item.href}
+                          className={`custom-header-style ${
+                            isActive(item.href) ? "active-link" : ""
+                          }`}
+                          onClick={() => handleMenuItemClick(item.href)}
+                        >
+                          {item.name}
+                        </Link>
+                      </Col>
+                    )
+                  } else {
+                    return (
+                      <Col key={index} lg={1} className="text-center">
+                        <Link
+                          href={item.href}
+                          className={`custom-header-style ${
+                            isActive(item.href) ? "active-link" : ""
+                          }`}
+                          onClick={() => handleMenuItemClick(item.href)}
+                        >
+                          {item.name}
+                        </Link>
+                      </Col>
+                    )
+                  }
+                })}
               </Row>
             </Col>
           </Row>
@@ -222,114 +262,87 @@ function Header() {
               className="position-fixed p-0 w-100 h-100"
               style={{ top: "0rem", left: "", right: 15 }}
             >
-              <Col className=" bg-white p-0">
+              <Col className="bg-white p-0">
                 <Col className="d-flex justify-content-end">
                   <button
                     className="text-dark p-0 border-0 bg-transparent mr-2 p-1"
                     onClick={handleMobileMenuToggle}
                     style={{ fontSize: "23px", fontWeight: "bold" }}
                   >
-                    <IoMdClose size={30} className="bg-warning rounded-4"/>
+                    <IoMdClose size={30} className="bg-warning rounded-4" />
                   </button>
                 </Col>
 
-                <Col className="pb-3 px-4 p-0 border-bottom">
-                  <Link
-                    href="/"
-                    className="text-decoration-none text-dark"
-                    onClick={() => handleMenuItemClick("/")}
-                  >
-                    Home
-                  </Link>
-                </Col>
-
-                <Col className="p-3 px-4 p-0 border-bottom">
-                  <Link
-                    href="/about"
-                    className="text-decoration-none text-dark"
-                    onClick={() => handleMenuItemClick("/about")}
-                  >
-                    About
-                  </Link>
-                </Col>
-
-                <Col className="p-0">
-                  <Col
-                    className="p-3 px-4 p-0 border-bottom d-flex justify-content-between align-items-center"
-                    onClick={handleSubMenuToggle}
-                  >
-                    <Link href="#" className="text-decoration-none text-dark">
-                      Our Work
-                      {isSubMenuOpen ? (
-                        <FaChevronUp
-                          style={{
-                            fontSize: "10px",
-                            color: "black",
-                            marginLeft: "5px",
-                          }}
-                        />
-                      ) : (
-                        <FaChevronDown
-                          style={{
-                            fontSize: "10px",
-                            color: "black",
-                            marginLeft: "5px",
-                          }}
-                        />
-                      )}
-                    </Link>
-                  </Col>
-
-                  <Collapse in={isSubMenuOpen}>
-                    <div>
-                      <Col className="p-3 px-4 p-0 border-bottom">
-                        <Link
-                          href="/agriculture"
-                          className="text-decoration-none text-dark"
-                          onClick={() => handleMenuItemClick("/agriculture")}
+                {menuItems.map((item, index) => {
+                  if (item.name === "Our Work") {
+                    return (
+                      <Col key={index} className="p-0">
+                        <Col
+                          className="p-3 px-4 p-0 border-bottom d-flex justify-content-between align-items-center"
+                          onClick={handleSubMenuToggle}
                         >
-                          &gt; Agriculture
+                          <Link
+                            href="#"
+                            className="text-decoration-none text-dark"
+                          >
+                            {item.name}
+                            {isSubMenuOpen ? (
+                              <FaChevronUp
+                                style={{
+                                  fontSize: "10px",
+                                  color: "black",
+                                  marginLeft: "5px",
+                                }}
+                              />
+                            ) : (
+                              <FaChevronDown
+                                style={{
+                                  fontSize: "10px",
+                                  color: "black",
+                                  marginLeft: "5px",
+                                }}
+                              />
+                            )}
+                          </Link>
+                        </Col>
+
+                        <Collapse in={isSubMenuOpen}>
+                          <div>
+                            {item.submenu.map((subItem, subIndex) => (
+                              <Col
+                                key={subIndex}
+                                className="p-3 px-4 p-0 border-bottom"
+                              >
+                                <Link
+                                  href={subItem.href}
+                                  className="text-decoration-none text-dark"
+                                  onClick={() =>
+                                    handleMenuItemClick(subItem.href)
+                                  }
+                                  target={subItem.external ? "_blank" : ""}
+                                >
+                                  &gt; {subItem.name}
+                                </Link>
+                              </Col>
+                            ))}
+                          </div>
+                        </Collapse>
+                      </Col>
+                    )
+                  } else {
+                    return (
+                      <Col key={index} className="p-3 px-4 p-0 border-bottom">
+                        <Link
+                          href={item.href}
+                          className="text-decoration-none text-dark"
+                          onClick={() => handleMenuItemClick(item.href)}
+                        >
+                          {item.name}
                         </Link>
                       </Col>
-                      <Col className="p-3 px-4 p-0 border-bottom">
-                        <Link
-                          href="https://community-engagement.fuzhio.org/"
-                          target="_blank"
-                          className="text-decoration-none text-dark"
-                          onClick={() =>
-                            handleMenuItemClick(
-                              "https://community-engagement.fuzhio.org/"
-                            )
-                          }
-                        >
-                          &gt; Community Engagement
-                        </Link>
-                      </Col>
-                    </div>
-                  </Collapse>
-                </Col>
-
-                <Col className="p-3 px-4 p-0 border-bottom">
-                  <Link
-                    href="/fuzhio-covid-response"
-                    className="text-decoration-none text-dark"
-                    onClick={() =>
-                      handleMenuItemClick("/fuzhio-covid-response")
-                    }
-                  >
-                    Fuzhio & Covid Response
-                  </Link>
-                </Col>
-
-                <Col className="p-3 px-4 p-0 border-bottom">
-                  <Link
-                    href="/blog"
-                    className="text-decoration-none text-dark"
-                    onClick={() => handleMenuItemClick("/blog")}
-                  >
-                    Blog
-                  </Link>
-                </Col>
+                    )
+                  }
+                })}
               </Col>
             </Row>
           )}

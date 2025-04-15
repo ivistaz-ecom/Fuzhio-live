@@ -95,16 +95,28 @@ color: #b34738;
  */
 
 /* Home Page */
-
 .home-background-container {
-  background-image: url('/home/home_banner.jpg'),linear-gradient(rgba(0,0,0,0.1),rgba(0,0,0,0.2));
-  /* background-blend-mode: overlay; */
-  width:100%;
+  position: relative;
+  width: 100%;
   min-height: 100vh;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.home-background-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('/home/home_banner.jpg'), linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.2));
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+  opacity: 1; /* Adjust this value as needed */
+  z-index: -1;
 }
 
 /* Apply different background style for iOS devices */
@@ -249,15 +261,21 @@ hr {
 /* Agri */
 
 .agri-background-container {
-  background-image: url('/assets/agri/agriculture_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
-  /* background-blend-mode: overlay; */
-  width:100%;
+  background-image: url('/assets/agri/agriculture_banner.jpg'),
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+  width: 100%;
   min-height: 70vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
+
+  /* Glass effect */
+  background-blend-mode: overlay;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
+
 .agri-hover-effect:hover {
   transform: scale(1.1);
 }
@@ -288,16 +306,21 @@ hr {
 }
 
 /* Fuzhio Covid */
-.fuzhiocovid-background-container { 
-  background-image: url('/assets/fuzhiocovid/fuzhiocovid_banner.jpg'),linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.2));
-  /* background-blend-mode: overlay; */
-  width:100%;
+.fuzhiocovid-background-container {
+  background-image: url('/assets/fuzhiocovid/fuzhiocovid_banner.jpg'), linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.2));
+  width: 100%;
   min-height: 70vh;
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
-}  
+  position: relative;
+  /* Add the glass effect */
+  background-blend-mode: overlay;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
 @media only screen and (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
   .fuzhiocovid-background-container {
     background-attachment: scroll;
@@ -544,12 +567,14 @@ hr {
 }
 
 a.custom-header-style {
-  color: #ffd0b3;
+  /* color: #ffd0b3; */
+  color: #ffff;
   text-decoration: none;
 }
 
 .custom-header-style:hover {
-  color: #c8594a;
+  /* color: #c8594a; */
+  color: #ffff;
   padding-bottom: 10px !important;
   border-bottom: 2px solid #c8594a;
   
@@ -558,6 +583,7 @@ a.custom-header-style {
 a.blog-custom-header-style {
   color: #000000;
   text-decoration: none;
+  
 }
 
 .blog-custom-header-style:hover {
