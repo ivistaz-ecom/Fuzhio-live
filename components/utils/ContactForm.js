@@ -55,7 +55,8 @@ const ContactForm = () => {
     }
 
     const formPayload = new FormData()
-    formPayload.append("fullName", `${formData.fullName} ${formData.lastName}`)
+    formPayload.append("fullName", formData.fullName)
+    formPayload.append("lastName", formData.lastName)
     formPayload.append("businessEmail", formData.businessEmail)
     formPayload.append("message", formData.message)
 
@@ -90,7 +91,7 @@ const ContactForm = () => {
               type="text"
               name="fullName"
               className="form-control mb-3"
-              placeholder="Full Name"
+              placeholder="First Name"
               value={formData.fullName}
               onChange={handleChange}
             />
